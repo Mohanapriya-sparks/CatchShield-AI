@@ -10,7 +10,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 
 from .database import init_db
-from .routers import batches, alerts, matching, inspections, public, advisory
+from .routers import batches, alerts, matching, inspections, public, advisory, auth_router
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 UPLOADS_DIR = os.path.join(BASE_DIR, "..", "uploads")
@@ -47,6 +47,7 @@ app.include_router(matching.router, prefix="/api/matching", tags=["matching"])
 app.include_router(inspections.router, prefix="/api/inspections", tags=["inspections"])
 app.include_router(public.router, prefix="/api/public", tags=["public"])
 app.include_router(advisory.router, prefix="/api/advisory", tags=["advisory"])
+app.include_router(auth_router.router, prefix="/api/auth", tags=["auth"])
 
 # Serve uploaded photos (no personal data in path)
 app.mount("/uploads", StaticFiles(directory=UPLOADS_DIR), name="uploads")

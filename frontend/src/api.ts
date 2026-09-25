@@ -9,7 +9,12 @@ export type Role = 'operator' | 'officer' | 'inspector' | 'admin'
 
 async function req(method: string, path: string, body?: unknown, role?: Role, isForm = false) {
   const headers: Record<string, string> = {}
-  if (role) headers['X-Role'] = role
+  const token = localStorage.getItem('token')
+  if (token) {
+    headers['X-Role'] = `Bearer ${token}`
+  } else if (role) {
+    headers['X-Role'] = role
+  }
   
   let fetchBody: BodyInit | undefined
   if (body) {
