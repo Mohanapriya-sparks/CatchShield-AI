@@ -63,7 +63,11 @@ This is a functional prototype built for the **ChainCraft** track. The following
 
 | Public QR Lookup | Zone Conditions & Alerts |
 | :---: | :---: |
-| *(See docs/demo.webp for the animated walkthrough!)* | *(See docs/demo.webp for the animated walkthrough!)* |
+| <img src="docs/images/public_lookup.png" width="400" alt="Public QR Lookup showing batch status"> | <img src="docs/images/zone_conditions.png" width="400" alt="Operator screen showing zone alert warning"> |
+
+| Automated Matching Dashboard |
+| :---: |
+| <img src="docs/images/matching.png" width="800" alt="Matching dashboard flagging overlapping alerts"> |
 
 ## 🚀 Quick Start (Local Development)
 
