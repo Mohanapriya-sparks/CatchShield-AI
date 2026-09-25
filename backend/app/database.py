@@ -5,8 +5,17 @@ import os
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession, async_sessionmaker
 from sqlalchemy.orm import DeclarativeBase
 
-DB_PATH = os.environ.get("DB_PATH", "catchshield.db")
-DATABASE_URL = f"sqlite+aiosqlite:///{DB_PATH}"
+# Use Render/PostgreSQL DATABASE_URL if available, else fallback to SQLite
+DATABASE_URL = os.environ.get("DATABASE_URL")
+if not DATABASE_URL:
+    DB_PATH = os.environ.get("DB_PATH", "catchshield.db")
+    DATABASE_URL = f"sqlite+aiosqlite:///{DB_PATH}"
+
+# Render PostgreSQL URL might start with postgres:// instead of postgresql+asyncpg://
+if DATABASE_URL.startswith("postgres://") or DATABASE_URL.startswith("postgresql://"):
+    # SQLAlchemy 1.4+ requires postgresql:// and async requires +asyncpg
+    DATABASE_URL = DATABASE_URL.replace("postgres://", "postgresql+asyncpg://", 1)
+    DATABASE_URL = DATABASE_URL.replace("postgresql://", "postgresql+asyncpg://", 1)
 
 engine = create_async_engine(DATABASE_URL, echo=False)
 SessionLocal = async_sessionmaker(engine, expire_on_commit=False, class_=AsyncSession)
