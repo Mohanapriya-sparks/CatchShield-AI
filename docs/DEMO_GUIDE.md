@@ -4,7 +4,7 @@ This guide walks you through the interactive features of CatchShield AI.
 
 ## 1. Initial Setup
 
-Make sure both the FastAPI backend and Vite frontend are running. Upon the first backend startup, the SQLite database is automatically seeded with sample data, including two active, confirmed environmental alerts for `Zone 03` and `Zone 04`.
+You can run this demo using the [Live Deployment](https://catchshield-frontend.onrender.com/) or by running it locally. Upon the first backend startup (whether live or local), the database is automatically seeded with sample data, including two active, confirmed environmental alerts for `Zone 03` and `Zone 04`.
 
 ## 2. Navigating the App
 
@@ -44,5 +44,5 @@ Click **Login as Admin** on the home screen. You'll see four main tabs:
 
 ### Step F: Public QR Lookup
 1. Log out, then click **Login as Customer**.
-2. Alternatively, manually type `http://localhost:5173/lookup/YOUR_BATCH_ID` in your URL bar.
+2. Alternatively, manually type `https://catchshield-frontend.onrender.com/lookup/YOUR_BATCH_ID` in your URL bar.
 3. You will see a privacy-safe timeline, showing that the batch is under environmental review or flagged, without revealing precise coordinates or the fisher's identity.

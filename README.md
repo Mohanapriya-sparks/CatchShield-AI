@@ -1,5 +1,7 @@
 # 🐟 CatchShield AI
 [![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/Mohanapriya-sparks/CatchShield-AI)
+[![Live Demo](https://img.shields.io/badge/Live_Demo-catchshield--frontend.onrender.com-brightgreen?style=for-the-badge&logo=render)](https://catchshield-frontend.onrender.com/)
+
 ### Traceability proves where the fish came from. **CatchShield proves what happened to the water it swam in.**
 
 Real-time environmental safeguarding for **seafood supply chains**. Register a catch batch at the landing center, and CatchShield cross-references it against live, officer-confirmed marine alerts (spills, red tides, contamination) in that exact zone and timeframe. It automatically flags overlapping batches for inspection, proving an unbroken, verifiable chain of safety to the final consumer.
