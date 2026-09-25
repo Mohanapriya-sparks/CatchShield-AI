@@ -30,6 +30,16 @@ Real-time environmental safeguarding for **seafood supply chains**. Register a c
 
 ---
 
+## 🎥 Demo & Deliverables
+
+- **Demo Video Link** (Mandatory): [Add YouTube/Drive link here](#)
+- **Deployment Link**: [https://catchshield-frontend.onrender.com](#) *(Pending your Render deployment)*
+- **Pitch Deck / PPT**: [Add presentation link here](#)
+- **Technical Documentation**: [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) · [Security & Limitations](docs/SECURITY_AND_LIMITATIONS.md)
+- **Live API**: [catchshield-backend.onrender.com/docs](#) — interactive OpenAPI docs *(Pending your Render deployment)*
+
+---
+
 ## 📌 Problem & Domain
 
 Current supply chain traceability systems are built to answer one question: *Where did this seafood originate?* But if an environmental disaster—such as an oil spill, toxic algal bloom, or industrial runoff—occurs in that specific marine zone, standard systems do not automatically intercept the affected catch. **Catch records and environmental alerts exist in complete silos.**
