@@ -4,7 +4,18 @@ import { registerBatch, getConditions } from '../api'
 import { queueBatch, updateBatchStatus } from '../offlineQueue'
 import { getStatusBadge, getStatusLabel } from '../utils'
 
-const ZONES = ['Zone 01', 'Zone 02', 'Zone 03', 'Zone 04', 'Zone 05', 'Zone 06', 'Zone 07', 'Zone 08', 'Zone 09', 'Zone 10']
+const ZONES = [
+  { id: 'Zone 01', label: 'Zone 01 (Good - No Alert)' },
+  { id: 'Zone 02', label: 'Zone 02 (Good - No Alert)' },
+  { id: 'Zone 03', label: 'Zone 03 (Alert Active - Seeded)' },
+  { id: 'Zone 04', label: 'Zone 04 (Alert Active - Seeded)' },
+  { id: 'Zone 05', label: 'Zone 05 (Good - No Alert)' },
+  { id: 'Zone 06', label: 'Zone 06 (Alert Active - Seeded)' },
+  { id: 'Zone 07', label: 'Zone 07 (Good - No Alert)' },
+  { id: 'Zone 08', label: 'Zone 08 (Alert Active - Seeded)' },
+  { id: 'Zone 09', label: 'Zone 09 (Good - No Alert)' },
+  { id: 'Zone 10', label: 'Zone 10 (Alert Active - Seeded)' }
+]
 
 interface RegisterResult {
   batch_id: string
@@ -197,7 +208,7 @@ export default function OperatorScreen() {
                   value={form.catch_zone}
                   onChange={e => setForm(f => ({ ...f, catch_zone: e.target.value }))}
                 >
-                  {ZONES.map(z => <option key={z}>{z}</option>)}
+                  {ZONES.map(z => <option key={z.id} value={z.id}>{z.label}</option>)}
                 </select>
               </div>
               <div className="form-group">

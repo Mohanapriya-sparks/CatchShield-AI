@@ -38,7 +38,7 @@ async def seed_sample_alerts():
     from .models import Alert
 
     async with SessionLocal() as session:
-        result = await session.execute(select(Alert).where(Alert.id.in_(["ALT-2026-Z03", "ALT-2026-Z04"])))
+        result = await session.execute(select(Alert).where(Alert.id.in_(["ALT-2026-Z03", "ALT-2026-Z04", "ALT-2026-Z06", "ALT-2026-Z08", "ALT-2026-Z10"])))
         existing = {a.id for a in result.scalars().all()}
 
         now = datetime.now(timezone.utc)
@@ -70,6 +70,45 @@ async def seed_sample_alerts():
                 confirmed_at=now,
                 status="CONFIRMED",
                 screening_note="Routine satellite & water monitoring detected algal bloom event."
+            ))
+
+        if "ALT-2026-Z06" not in existing:
+            to_add.append(Alert(
+                id="ALT-2026-Z06",
+                zone="ZONE 06",
+                start_time=start,
+                end_time=end,
+                reason="Heavy Metal Contamination: Elevated mercury levels detected in Zone 06.",
+                confirmed_by="Env Officer Dr. V. Nair",
+                confirmed_at=now,
+                status="CONFIRMED",
+                screening_note="Water samples confirm discharge."
+            ))
+            
+        if "ALT-2026-Z08" not in existing:
+            to_add.append(Alert(
+                id="ALT-2026-Z08",
+                zone="ZONE 08",
+                start_time=start,
+                end_time=end,
+                reason="Oil Spill Remnants: Traces of hydrocarbons detected.",
+                confirmed_by="Env Officer Dr. V. Nair",
+                confirmed_at=now,
+                status="CONFIRMED",
+                screening_note="Monitoring ongoing."
+            ))
+
+        if "ALT-2026-Z10" not in existing:
+            to_add.append(Alert(
+                id="ALT-2026-Z10",
+                zone="ZONE 10",
+                start_time=start,
+                end_time=end,
+                reason="Microplastic Surge: High density detected after storm.",
+                confirmed_by="Env Officer Dr. V. Nair",
+                confirmed_at=now,
+                status="CONFIRMED",
+                screening_note="Review needed."
             ))
 
         if to_add:
