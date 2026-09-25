@@ -59,7 +59,7 @@ export default function MatchingDashboard() {
       </div>
 
       <div className="alert-box alert-disclaimer">
-        ⚠️ {data?.disclaimer}
+        ℹ️ {data?.disclaimer}
       </div>
 
       <div style={{ display: 'flex', gap: '1rem', marginBottom: '1.5rem', flexWrap: 'wrap' }}>

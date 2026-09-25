@@ -497,8 +497,8 @@ export default function PublicLookup() {
             </div>
           </div>
 
-          <div className="alert-box alert-disclaimer" style={{ marginTop: '1.5rem' }}>
-            ⚠️ {data.disclaimer}
+          <div className={`alert-box ${data.status === 'NO_CONFIRMED_ALERT_OVERLAP_FOUND' || data.status === 'CLEARED_DEMO' ? 'alert-success' : data.status === 'FLAGGED_DEMO' ? 'alert-danger' : 'alert-disclaimer'}`} style={{ marginTop: '1.5rem' }}>
+            ℹ️ {data.disclaimer}
           </div>
         </>
       )}
