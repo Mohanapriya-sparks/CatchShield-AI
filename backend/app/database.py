@@ -1,0 +1,73 @@
+"""
+Database setup – SQLite via SQLAlchemy (async).
+"""
+import os
+from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession, async_sessionmaker
+from sqlalchemy.orm import DeclarativeBase
+
+DB_PATH = os.environ.get("DB_PATH", "catchshield.db")
+DATABASE_URL = f"sqlite+aiosqlite:///{DB_PATH}"
+
+engine = create_async_engine(DATABASE_URL, echo=False)
+SessionLocal = async_sessionmaker(engine, expire_on_commit=False, class_=AsyncSession)
+
+
+class Base(DeclarativeBase):
+    pass
+
+
+async def init_db():
+    from . import models  # noqa: F401 – registers all models
+    async with engine.begin() as conn:
+        await conn.run_sync(Base.metadata.create_all)
+    await seed_sample_alerts()
+
+
+async def seed_sample_alerts():
+    from datetime import datetime, timezone, timedelta
+    from sqlalchemy import select
+    from .models import Alert
+
+    async with SessionLocal() as session:
+        result = await session.execute(select(Alert).where(Alert.id.in_(["ALT-2026-Z03", "ALT-2026-Z04"])))
+        existing = {a.id for a in result.scalars().all()}
+
+        now = datetime.now(timezone.utc)
+        start = now - timedelta(days=30)
+        end = now + timedelta(days=365)
+        to_add = []
+
+        if "ALT-2026-Z03" not in existing:
+            to_add.append(Alert(
+                id="ALT-2026-Z03",
+                zone="ZONE 03",
+                start_time=start,
+                end_time=end,
+                reason="Estuary Effluent Discharge: Chemical parameters elevated near estuary mouth in Zone 03.",
+                confirmed_by="Env Officer Dr. V. Nair",
+                confirmed_at=now,
+                status="CONFIRMED",
+                screening_note="Water samples confirm discharge. Catch batches in Zone 03 flagged for environmental review."
+            ))
+
+        if "ALT-2026-Z04" not in existing:
+            to_add.append(Alert(
+                id="ALT-2026-Z04",
+                zone="ZONE 04",
+                start_time=start,
+                end_time=end,
+                reason="Harmful Algal Bloom (HAB / Red Tide): Algal toxin surge detected in coastal waters of Zone 04.",
+                confirmed_by="Coastal Authority Officer K. Sharma",
+                confirmed_at=now,
+                status="CONFIRMED",
+                screening_note="Routine satellite & water monitoring detected algal bloom event."
+            ))
+
+        if to_add:
+            session.add_all(to_add)
+            await session.commit()
+
+
+async def get_db():
+    async with SessionLocal() as session:
+        yield session
