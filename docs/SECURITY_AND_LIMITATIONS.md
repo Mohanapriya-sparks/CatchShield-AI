@@ -14,8 +14,8 @@ All inspector and officer decisions recorded in this system are demonstration ac
 
 * **Self-Reported Origins:** In the current prototype, the catch zone and time are self-reported by the fisher/operator at the landing site. There is no automated IoT or GPS verification on the vessel itself in this version, meaning origins rely on the operator's truthfulness.
 * **Hash Verification Scope:** The system generates a SHA-256 fingerprint of the batch details. This fingerprint ensures that the *recorded* data cannot be altered later without detection. However, it does not guarantee that the data was accurate when first entered ("Garbage In, Garbage Out").
-* **AI/Heuristics:** The environmental alert screening currently relies on basic heuristics and keyword matching for demonstration purposes. A production system would require a rigorously trained machine learning model.
-* **Blockchain Simulation:** While Solidity contracts are provided in the `chain/` directory, the live application simulates blockchain anchoring. True decentralization requires deploying the contracts to a testnet/mainnet and wiring the FastAPI backend to a Web3 provider.
+* **AI Risk Scoring Model:** The system utilizes a legitimate machine learning component via `scikit-learn`. A Logistic Regression model predicts the probability (0-100%) of a future contamination alert based on sea surface temperature anomalies, days since the last alert, and historical zone contamination rates. For the hackathon, this model is trained on *synthetic historical data* during initialization to prove the architecture.
+* **Blockchain Simulation:** While the `chain_tx` field and SHA-256 fingerprinting are real cryptographic proofs of data integrity, the live application currently uses PostgreSQL to simulate the distributed ledger. This allows the MVP to run cleanly on Render. True decentralization requires deploying the contracts (in a future iteration) to a testnet/mainnet and wiring the FastAPI backend to a Web3 provider.
 
 ## Privacy Model
 

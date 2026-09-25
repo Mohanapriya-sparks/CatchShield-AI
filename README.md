@@ -113,8 +113,9 @@ Blockchain supply chains are popular, but they often suffer from the "Garbage In
 ### Core Technologies Used:
 - **Frontend:** React 18 · TypeScript · Vite · HTML5 QR Scanner
 - **Backend:** Python 3.11 · FastAPI · SQLAlchemy (Async)
-- **Database:** SQLite (local persistence)
-- **Smart Contracts:** Solidity (Hardhat prototyping environment)
+- **Machine Learning (AI):** `scikit-learn` Logistic Regression (Predictive risk scoring for environmental contamination)
+- **Database:** SQLite (local) / PostgreSQL (production)
+- **Smart Contracts:** Solidity (Blockchain simulation for MVP)
 
 ### Additional Features:
 - [x] **Privacy-Safe Cryptography** — SHA-256 fingerprinting of batch data

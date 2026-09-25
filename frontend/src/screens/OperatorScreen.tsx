@@ -138,7 +138,15 @@ export default function OperatorScreen() {
               </div>
             )}
             <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)', marginTop: '0.6rem', borderTop: '1px solid var(--border-subtle)', paddingTop: '0.5rem' }}>
-              Source: {conditions.advisory?.source || 'Unknown'} · Updated: {conditions.advisory?.fetched_at ? new Date(conditions.advisory.fetched_at).toLocaleString('en-IN', { dateStyle: 'short', timeStyle: 'short' }) : 'N/A'}
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.2rem' }}>
+                <span>Source: {conditions.advisory?.source || 'Unknown'}</span>
+                {conditions.advisory?.ai_risk_score !== undefined && (
+                  <span className={`badge ${conditions.advisory.ai_risk_score > 50 ? 'badge-danger' : 'badge-success'}`}>
+                    🤖 AI Contamination Risk: {conditions.advisory.ai_risk_score}%
+                  </span>
+                )}
+              </div>
+              <div>Updated: {conditions.advisory?.fetched_at ? new Date(conditions.advisory.fetched_at).toLocaleString('en-IN', { dateStyle: 'short', timeStyle: 'short' }) : 'N/A'}</div>
             </div>
           </div>
         </div>

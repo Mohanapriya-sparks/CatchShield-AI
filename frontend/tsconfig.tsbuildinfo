@@ -1,0 +1,1 @@
+{"root":["./src/app.tsx","./src/api.ts","./src/main.tsx","./src/offlinequeue.ts","./src/utils.ts","./src/vite-env.d.ts","./src/components/syncbanner.tsx","./src/screens/homescreen.tsx","./src/screens/inspectorscreen.tsx","./src/screens/matchingdashboard.tsx","./src/screens/officerscreen.tsx","./src/screens/operatorscreen.tsx","./src/screens/publiclookup.tsx"],"version":"6.0.3"}
