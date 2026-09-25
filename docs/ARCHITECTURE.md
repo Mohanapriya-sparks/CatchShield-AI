@@ -4,37 +4,7 @@ CatchShield AI is designed to be simple, resilient, and privacy-focused. Below i
 
 ## 🌊 The Big Picture
 
-```mermaid
-graph TD
-    %% Define Styling
-    classDef physical fill:#e1f5fe,stroke:#0288d1,stroke-width:2px;
-    classDef system fill:#f3e5f5,stroke:#8e24aa,stroke-width:2px;
-    classDef db fill:#fff3e0,stroke:#f57c00,stroke-width:2px;
-    classDef consumer fill:#e8f5e9,stroke:#388e3c,stroke-width:2px;
-
-    %% Actors and Physical World
-    A[🚢 Fisher catches seafood]:::physical --> B
-    B[⚓ Landing Center Operator]:::physical -->|Registers Batch via Tablet/Web| C
-    
-    X[🛰️ Marine Satellites / Sensors]:::physical --> Y
-    Y[👮 Environmental Officer]:::physical -->|Confirms Danger in Zone| Z
-
-    %% The CatchShield System
-    subgraph CatchShield AI Core System
-        C[Catch Data: Zone, Time, Species]:::system --> DB[(Database)]:::db
-        Z[Alert Data: Hazard, Zone, Time Window]:::system --> DB
-        
-        DB --> E{⚙️ Automated Matching Engine}:::system
-        E -->|No Overlap| F[✅ Batch Cleared]:::system
-        E -->|Overlap Detected!| G[⚠️ Batch Flagged for Review]:::system
-    end
-
-    %% Outcomes
-    F --> H
-    G -->|Inspector makes final decision| H
-    
-    H[📱 Public QR Code generated]:::system --> I[🛒 Consumer scans QR Code]:::consumer
-```
+<img src="images/architecture.png" alt="CatchShield AI System Architecture" width="100%">
 
 ---
 
