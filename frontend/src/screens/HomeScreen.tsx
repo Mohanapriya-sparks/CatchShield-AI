@@ -12,7 +12,7 @@ export default function HomeScreen() {
       </div>
 
       <div className="alert-box alert-disclaimer" style={{ maxWidth: 700, margin: '0 auto 2rem' }}>
-        ⚠️ <strong>IMPORTANT DISCLAIMER:</strong> No alert overlap or matching hash proves seafood safety.
+        ℹ️ <strong>IMPORTANT DISCLAIMER:</strong> No alert overlap or matching hash proves seafood safety.
         Inspector decisions in this prototype are demo decisions, not official government clearance.
       </div>
 
