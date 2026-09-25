@@ -33,10 +33,10 @@ Real-time environmental safeguarding for **seafood supply chains**. Register a c
 ## 🎥 Demo & Deliverables
 
 - **Demo Video Link** (Mandatory): [Watch the demo](docs/demo.webp)
-- **Deployment Link**: [https://catchshield-frontend.onrender.com](#) *(Pending your Render deployment)*
-- **Pitch Deck / PPT**: [Add presentation link here](#)
+- **Deployment Link**: [https://catchshield-frontend.onrender.com](https://catchshield-frontend.onrender.com)
+- **Pitch Deck / PPT**: [View the deck](docs/PITCH_DECK.md)
 - **Technical Documentation**: [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) · [Security & Limitations](docs/SECURITY_AND_LIMITATIONS.md)
-- **Live API**: [catchshield-backend.onrender.com/docs](#) — interactive OpenAPI docs *(Pending your Render deployment)*
+- **Live API**: [catchshield-backend.onrender.com/docs](https://catchshield-backend.onrender.com/docs) — interactive OpenAPI docs
 
 ---
 
