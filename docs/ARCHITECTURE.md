@@ -2,9 +2,68 @@
 
 CatchShield AI is designed to be simple, resilient, and privacy-focused. Below is a high-level look at how the different pieces of the system fit together to ensure seafood safety.
 
-## 🌊 The Big Picture
+## 🧭 System Architecture Workflow
 
-<img src="images/architecture.png" alt="CatchShield AI System Architecture" width="100%">
+```mermaid
+graph LR
+    %% Styling Definitions
+    classDef physical fill:#e1f5fe,stroke:#0288d1,stroke-width:2px,color:#01579b,font-weight:bold
+    classDef coreSystem fill:#f3e5f5,stroke:#8e24aa,stroke-width:2px,stroke-dasharray: 5 5,color:#4a148c
+    classDef dataBox fill:#e8eaf6,stroke:#3f51b5,stroke-width:2px,color:#1a237e
+    classDef db fill:#fff3e0,stroke:#f57c00,stroke-width:2px,color:#e65100,font-weight:bold
+    classDef engine fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#4a148c,font-weight:bold
+    classDef success fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px,color:#1b5e20,font-weight:bold
+    classDef danger fill:#ffebee,stroke:#c62828,stroke-width:2px,color:#b71c1c,font-weight:bold
+    classDef qrBox fill:#f3e5f5,stroke:#8e24aa,stroke-width:2px,color:#4a148c
+    classDef consumer fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px,color:#1b5e20,font-weight:bold
+
+    %% Physical World (Catch)
+    subgraph Catch ["Physical World (Catch Workflow)"]
+        direction LR
+        A["🚢<br/>Fisher<br/>catches seafood"]:::physical --> B["👷<br/>Landing Center<br/>Operator<br/><br/>Registers Batch"]:::physical
+    end
+
+    %% External World (Alerts)
+    subgraph Alerts ["External / Physical World (Alerts)"]
+        direction LR
+        C["🛰️<br/>Marine Satellites<br/>Sensors"]:::physical --> D["👮<br/>Environmental<br/>Officer<br/><br/>Confirms Danger"]:::physical
+    end
+
+    %% Core System
+    subgraph Core ["CatchShield AI Core System"]
+        direction TB
+        subgraph Inputs [" "]
+            direction LR
+            E["📄<br/>Catch Data:<br/>Zone, Time, Species"]:::dataBox
+            F["⚠️<br/>Alert Data:<br/>Hazard, Zone, Window"]:::dataBox
+        end
+        
+        DB[("🛢️ Database")]:::db
+        
+        Inputs --> DB
+        DB --> Engine["⚙️ Automated Matching Engine"]:::engine
+        
+        Engine -- "No Overlap" --> Ok["✅ Batch Cleared"]:::success
+        Engine -- "Overlap Detected!" --> Flag["🚨 Batch Flagged<br/>for Review"]:::danger
+    end
+
+    %% Consumer
+    subgraph EndUser ["Consumer"]
+        direction LR
+        Scan["📱<br/>Consumer scans<br/>QR Code"]:::consumer
+    end
+
+    %% Connections
+    B --> E
+    D --> F
+    
+    QR["🔳<br/>Public QR Code<br/>generated"]:::qrBox
+    
+    Ok --> QR
+    Flag -. "Inspector makes<br/>final decision" .-> QR
+    
+    QR --> Scan
+```
 
 ---
 
