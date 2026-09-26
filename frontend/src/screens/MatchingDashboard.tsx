@@ -211,6 +211,14 @@ export default function MatchingDashboard() {
                         <div><span style={{ color: 'var(--text-muted)' }}>Observed:</span><br/>08:05 AM</div>
                       </div>
                     </div>
+                    
+                    <a
+                      href="/inspector"
+                      className="btn btn-primary"
+                      style={{ display: 'block', textAlign: 'center', background: '#c4b5fd', color: '#000', marginTop: '1rem' }}
+                    >
+                      3. Next Step: Inspector Review →
+                    </a>
                   </div>
                 ))}
               </div>

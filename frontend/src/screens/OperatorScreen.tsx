@@ -280,7 +280,14 @@ export default function OperatorScreen() {
                 className="btn btn-outline"
                 style={{ textAlign: 'center' }}
               >
-                🔗 Open Public Lookup
+                1. 🔗 Open Public QR Passport
+              </a>
+              <a
+                href="/matching"
+                className="btn btn-primary"
+                style={{ textAlign: 'center', background: '#c4b5fd', color: '#000' }}
+              >
+                2. Next Step: AI Investigation →
               </a>
             </div>
           </div>

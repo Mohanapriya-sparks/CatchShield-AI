@@ -226,6 +226,13 @@ export default function InspectorScreen() {
             <div className="alert-box alert-success" style={{ marginTop: '1rem' }}>
               ✓ Decision recorded: <strong>{String((submitResult as Record<string, unknown>)['decision'] ?? '')}</strong>
               <br /><span style={{ fontSize: '0.8rem' }}>{String((submitResult as Record<string, unknown>)['note'] ?? '')}</span>
+              <a
+                href={`/lookup/${form.batch_id}`}
+                className="btn btn-primary"
+                style={{ display: 'block', textAlign: 'center', background: '#c4b5fd', color: '#000', marginTop: '1rem', textDecoration: 'none' }}
+              >
+                4. Next Step: View Final Traceability Passport →
+              </a>
             </div>
           )}
 
