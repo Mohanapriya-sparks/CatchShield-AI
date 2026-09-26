@@ -42,7 +42,7 @@ async def register_batch(
     x_role: str = Header(..., alias="X-Role"),
     db: AsyncSession = Depends(get_db),
 ):
-    require_role(x_role, "operator")
+    require_role(x_role, "operator", "admin")
 
     # Offline dedup: if idempotency_key already exists, return existing batch
     if idempotency_key:
