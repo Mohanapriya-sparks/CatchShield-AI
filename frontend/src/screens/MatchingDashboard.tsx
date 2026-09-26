@@ -60,6 +60,26 @@ export default function MatchingDashboard() {
 
       <div className="alert-box alert-disclaimer">
         ℹ️ {data?.disclaimer}
+        <br/>
+        <strong>AI-assisted, human-authorised:</strong> AI assists with investigation and interpretation. Batch flagging is based on explainable spatio-temporal rules, and final decisions remain with authorised personnel.
+      </div>
+      
+      <div className="card" style={{ marginBottom: '1.5rem', background: 'rgba(139, 92, 246, 0.05)', border: '1px solid rgba(139, 92, 246, 0.2)' }}>
+        <h3 style={{ margin: '0 0 0.5rem', color: '#c4b5fd', fontSize: '1.1rem' }}>Ask CatchShield (AI Demo)</h3>
+        <p style={{ margin: '0 0 1rem', fontSize: '0.85rem', color: 'var(--slate-300)' }}>
+          Example: <em>"Show catches affected by Zone 03 between 06:00 and 10:00."</em>
+        </p>
+        <div style={{ display: 'flex', gap: '0.5rem' }}>
+          <input type="text" placeholder="Ask about batches, environmental events, locations..." style={{ flex: 1, padding: '0.6rem', borderRadius: '4px', border: '1px solid var(--border-subtle)', background: 'var(--bg-card)', color: 'var(--text-primary)' }} readOnly value="Why was CF-104 flagged?" />
+          <button className="btn btn-primary" style={{ background: '#c4b5fd', color: '#000' }}>Ask</button>
+        </div>
+        <div style={{ marginTop: '1rem', padding: '1rem', background: 'rgba(0,0,0,0.2)', borderRadius: '6px' }}>
+          <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginBottom: '0.5rem' }}>INTERPRETED PARAMETERS:</div>
+          <div style={{ fontSize: '0.8rem', fontFamily: 'monospace', color: 'var(--ocean-300)', marginBottom: '1rem' }}>Location: Zone 03 | Time: 06:00-10:00 | Context: Ocean observations</div>
+          <div style={{ fontSize: '0.85rem', color: 'var(--slate-300)', fontStyle: 'italic' }}>
+            "Catch CF-104 was flagged because its recorded catch location, Zone 03, overlaps with environmental event ENV-024 and its catch time of 08:15 falls within the event window. The selected observation near Zone 03 records a temperature of 28.4°C, salinity of 34.7 PSU at 10m depth. These observations provide environmental context for investigation and do not independently determine seafood safety."
+          </div>
+        </div>
       </div>
 
       <div className="card-glass" style={{ marginBottom: '1.5rem', textAlign: 'center' }}>
