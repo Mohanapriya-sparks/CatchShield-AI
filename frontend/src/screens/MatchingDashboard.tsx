@@ -162,7 +162,7 @@ export default function MatchingDashboard() {
                       <div style={{ fontSize: '0.8rem', color: 'var(--amber-300)', marginTop: '0.2rem' }}>⚠ {b.reason}</div>
                     </div>
 
-                    <div style={{ background: 'rgba(139, 92, 246, 0.05)', padding: '0.75rem', borderRadius: '6px', border: '1px solid rgba(139, 92, 246, 0.2)' }}>
+                    <div style={{ background: 'rgba(139, 92, 246, 0.05)', padding: '0.75rem', borderRadius: '6px', border: '1px solid rgba(139, 92, 246, 0.2)', marginBottom: '1rem' }}>
                       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>
                         <span style={{ fontSize: '0.8rem', fontWeight: 600, color: '#c4b5fd', textTransform: 'uppercase' }}>AI Risk Context</span>
                         <span style={{ fontSize: '0.9rem', fontWeight: 700, color: 'var(--amber-400)' }}>72 / 100</span>
@@ -174,6 +174,21 @@ export default function MatchingDashboard() {
                         <div style={{ display: 'flex', justifyContent: 'space-between' }}><span>Temporal proximity</span> <span>██████████</span></div>
                         <div style={{ display: 'flex', justifyContent: 'space-between' }}><span>Spatial proximity</span> <span>███████░░░</span></div>
                         <div style={{ display: 'flex', justifyContent: 'space-between' }}><span>Env conditions</span> <span>████████░░</span></div>
+                      </div>
+                    </div>
+
+                    <div style={{ background: 'rgba(45, 159, 212, 0.05)', padding: '0.75rem', borderRadius: '6px', border: '1px solid rgba(45, 159, 212, 0.2)' }}>
+                      <div style={{ fontSize: '0.8rem', fontWeight: 600, color: 'var(--ocean-300)', marginBottom: '0.5rem', textTransform: 'uppercase' }}>Ocean Observation Context</div>
+                      <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)', marginBottom: '0.75rem', fontStyle: 'italic' }}>
+                        Ocean observations provide contextual environmental information for investigation. They do not independently determine seafood safety.
+                      </div>
+                      <div style={{ fontSize: '0.75rem', color: 'var(--slate-300)', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.5rem' }}>
+                        <div><span style={{ color: 'var(--text-muted)' }}>Nearest Float:</span><br/>ARGO-2901234</div>
+                        <div><span style={{ color: 'var(--text-muted)' }}>Distance:</span><br/>12 km from zone</div>
+                        <div><span style={{ color: 'var(--text-muted)' }}>Temp:</span><br/>28.4°C</div>
+                        <div><span style={{ color: 'var(--text-muted)' }}>Salinity:</span><br/>34.7 PSU</div>
+                        <div><span style={{ color: 'var(--text-muted)' }}>Depth:</span><br/>10 m</div>
+                        <div><span style={{ color: 'var(--text-muted)' }}>Observed:</span><br/>08:05 AM</div>
                       </div>
                     </div>
                   </div>
