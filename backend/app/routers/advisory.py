@@ -70,73 +70,27 @@ async def get_advisory(
     profile = ZONE_PROFILES.get(zone_key, ZONE_PROFILES["ZONE 01"])
     lat, lon = coords
 
-    params = {
-        "latitude": lat,
-        "longitude": lon,
-        "hourly": "wave_height,wind_speed_10m",
-        "forecast_days": 1,
-        "timezone": "auto",
-    }
-
+    # For the hackathon demo, we bypass the live Open-Meteo API to ensure 
+    # stable, distinct values for each zone and to prevent internet-dependency failures.
+    
     fetched_at = datetime.now(timezone.utc).isoformat()
+    days_since_alert = 2 if zone_key == "ZONE 03" else 30
+    hist_rate = 0.8 if zone_key == "ZONE 03" else 0.05
+    ai_risk_score = predict_zone_risk(days_since_alert, 1.0, hist_rate)
 
-    try:
-        async with httpx.AsyncClient(timeout=4.0) as client:
-            resp = await client.get(OPEN_METEO_MARINE_URL, params=params)
-            resp.raise_for_status()
-            data = resp.json()
-
-        hourly = data.get("hourly", {})
-        times = hourly.get("time", [])
-        waves = hourly.get("wave_height", [])
-        winds = hourly.get("wind_speed_10m", [])
-
-        # Take first valid non-zero data point or use profile
-        current_wave = waves[0] if (waves and waves[0] is not None) else profile["wave_height_m"]
-        current_wind = winds[0] if (winds and winds[0] is not None) else profile["wind_speed_kmh"]
-        current_time = times[0] if times else None
-
-        advisory_text = _build_advisory(current_wave, current_wind)
-        
-        # Calculate AI Risk Score (mock historical data inputs for demo)
-        days_since_alert = 2 if zone_key == "ZONE 03" else 30
-        hist_rate = 0.8 if zone_key == "ZONE 03" else 0.05
-        # We assume 1.0 temp anomaly for demo if not available
-        temp_anomaly = 1.0 
-        ai_risk_score = predict_zone_risk(days_since_alert, temp_anomaly, hist_rate)
-
-        return {
-            "zone": zone,
-            "coordinates": {"lat": lat, "lon": lon},
-            "source": "Open-Meteo Marine API (https://open-meteo.com/)",
-            "fetched_at": fetched_at,
-            "data_time": current_time,
-            "wave_height_m": current_wave,
-            "wind_speed_kmh": current_wind,
-            "advisory": advisory_text,
-            "ai_risk_score": ai_risk_score,
-            "sample_data": False,
-            "note": "Weather data is for informational purposes only. 'Safe to sail' is never guaranteed by this system.",
-        }
-
-    except Exception as exc:  # noqa: BLE001
-        days_since_alert = 2 if zone_key == "ZONE 03" else 30
-        hist_rate = 0.8 if zone_key == "ZONE 03" else 0.05
-        ai_risk_score = predict_zone_risk(days_since_alert, 1.0, hist_rate)
-        return {
-            "zone": zone,
-            "coordinates": {"lat": lat, "lon": lon},
-            "source": "CatchShield Marine Service (Zone Profile)",
-            "fetched_at": fetched_at,
-            "data_time": fetched_at,
-            "wave_height_m": profile["wave_height_m"],
-            "wind_speed_kmh": profile["wind_speed_kmh"],
-            "advisory": profile["advisory"],
-            "ai_risk_score": ai_risk_score,
-            "sample_data": True,
-            "note": "Weather data is for informational purposes only. 'Safe to sail' is never guaranteed by this system.",
-            "error": str(exc),
-        }
+    return {
+        "zone": zone,
+        "coordinates": {"lat": lat, "lon": lon},
+        "source": "CatchShield Marine Service (Demo Profile)",
+        "fetched_at": fetched_at,
+        "data_time": fetched_at,
+        "wave_height_m": profile["wave_height_m"],
+        "wind_speed_kmh": profile["wind_speed_kmh"],
+        "advisory": profile["advisory"],
+        "ai_risk_score": ai_risk_score,
+        "sample_data": True,
+        "note": "Weather data is for informational purposes only. 'Safe to sail' is never guaranteed by this system.",
+    }
 
 
 def _build_advisory(wave_m: float | None, wind_kmh: float | None) -> str:
